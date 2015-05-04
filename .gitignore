@@ -1,6 +1,4 @@
 node_modules/**
-/nbproject/private/
-nbproject/**
 .idea/**
-projectFilesBackup/**
-config/config.js
+assets/js/conf/config.js
+assets/build/**
