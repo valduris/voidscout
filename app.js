@@ -4,12 +4,14 @@ var express = require("express"),
     session = require('express-session'),
     WebSocketServer = require('ws').Server,
     store = new session.MemoryStore(),
+    bodyParser = require('body-parser'),
     wss = new WebSocketServer({ port: 8080 });
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 app.use( session({ store: store, resave: false, secret: 'secret', saveUninitialized: true }) );
 app.use( express.static('assets') );
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use( function( err, req, res, next ) {
     res.send( err.stack );
 });

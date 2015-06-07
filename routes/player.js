@@ -1,10 +1,15 @@
-module.exports = function ( app ) {
+var Player = require("../models/Player");
 
-    // TODO make REST API for bacbone models
-    app.get('/player', function ( req, res ) {
+module.exports = function (app) {
+
+    // TODO make real REST API for backbone models
+    app.get("/players/:id", function (req, res) {
+        res.json(Player.findBy("id", req.params.id ));
     });
 
-    app.post('/player', function ( req, res ) {
+    app.post("/players", function ( req, res ) {
+        //var id = req.params.id || req.body.id;
+        res.json({});
     });
 
-}
+};

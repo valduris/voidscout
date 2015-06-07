@@ -1,0 +1,17 @@
+doctype html
+
+style.
+    form {
+        height: 300px;
+        width: 500px;
+        margin: 300px auto;
+    }
+
+form(action="/login", method="post", datatype="x")
+    label(for="email")
+        Email
+        input#email(type="text", name="email")
+    label(for="password")
+        Password
+        input#password(type="password", name="password")
+    input(type="submit", value="Login")
