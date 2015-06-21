@@ -1,7 +1,7 @@
 var Player = {},
     players = [
-        {id: 1, "name": "Dukslis Kondrārs", "email": "dukslis@evolutiongaming.com", char_name: "dukslis", password: "123"},
-        {id: 2, "name": "Iļja Kronovs", "email": "Iļja.Kronovs@gmail.com", char_name: "ilya", password: "234"}
+        {id: 1, "name": "Dukslis Kondrārs", "email": "dukslis@evolutiongaming.com", char_name: "dukslis", password: "123", level: 2},
+        {id: 2, "name": "Iļja Kronovs", "email": "Iļja.Kronovs@gmail.com", char_name: "ilya", password: "234", level: 3}
     ];
 
 Player.find = function (char_name) {

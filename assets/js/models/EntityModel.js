@@ -1,5 +1,7 @@
-define("EntityModel", ["backbone"], function (Backbone) {
+/*global define*/
+define(function (require) {
     "use strict";
+    var Backbone = require("backbone");
     return Backbone.Model.extend({
         defaults: {
             name: "entity"

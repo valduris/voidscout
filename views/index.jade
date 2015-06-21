@@ -3,23 +3,26 @@ doctype html
 link(rel='stylesheet', href='/css/style.css')
 link(rel='stylesheet', href='/css/ctrl/index.css')
 
-.index-view
+.index_view
     .attack_cooldown_wrapper
         .attack_cooldown_text
         .attack_cooldown
-    button.auto-attack-toggle Start auto attack
+    button.auto_attack_toggle Start auto attack
+
+.player_view
+    .player_experience_bar_wrapper
+        .player_experience_bar_text
+        .player_experience_bar
+    .player_name
+    .player_kills
 
 p
     | Grumpy wizards make toxic brew for the evil Queen and Jack.
 
 ul.log
     li.entry welcome!
+    li.entry Unknown has joined the game.
+    li.entry.entry_lightblue Current mission - Defeat 20 plagued rats.
+    li.entry.entry_red Failed to initiate connection.
 
-script(src='/build/script.js')
-//script(src='/js/lib/jquery-ajax-2.1.1.min.js')
-//script(src='/js/lib/underscore-1.8.3.min.js')
-//script(src='/js/lib/backbone-1.1.2.min.js')
-//script(src='/js/lib/require-2.1.17.min.js')
-//script(src='/js/proto/Base.js')
-//script(src='/js/proto/Player.js')
-//script(src='/js/ctrl/IndexView.js')
+script(data-main="js/voidscout.js" src="js/lib/require-2.1.17.min.js")

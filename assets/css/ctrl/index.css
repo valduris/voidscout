@@ -9,6 +9,7 @@
 .attack_cooldown_text {
     color: #eee;
     font-weight: bold;
+    font-family: Arial;
     line-height: 20px;
     position: absolute;
     text-align: center;
@@ -32,7 +33,7 @@
     border-radius: 3px;
     box-shadow: 0 0 3px #333 inset;
     box-sizing: border-box;
-    font-size: 12;
+    font-size: 16px;
     padding: 5px;
     position: relative;
     width: 400px;
@@ -42,4 +43,13 @@
     font-size: 0.8em;
     list-style: none;
     text-shadow: 0 0 3px #000;
+}
+.log .entry.entry_lightblue {
+    color: #dff2ff;
+}
+.log .entry.entry_red {
+    color: #ff4444;
+}
+.log .entry.entry_yellow {
+    color: yellow;
 }

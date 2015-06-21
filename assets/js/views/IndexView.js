@@ -1,7 +1,10 @@
-define("IndexView", ["backbone", "underscore"], function (Backbone, _) {
+/*global define*/
+define(function (require) {
     "use strict";
+    var Backbone = require("backbone"),
+        _ = require("underscore");
     return Backbone.View.extend({
-        el: ".index-view",
+        el: ".index_view",
         initialize: function () {
             _.bindAll(this, "toggleAutoAttack", "onAutoAttackStart", "onAutoAttackEnd");
             this.model.on("autoAttack:start", this.onAutoAttackStart);
@@ -9,7 +12,7 @@ define("IndexView", ["backbone", "underscore"], function (Backbone, _) {
             this.model.on("autoAttack:stop", this.onAutoAttackStop); // no pending auto attack
         },
         events: {
-            "click .auto-attack-toggle": "toggleAutoAttack"
+            "click .auto_attack_toggle": "toggleAutoAttack"
         },
         onAutoAttackStart: function () {
             var attack_cooldown_node = this.el.querySelector(".attack_cooldown"),
@@ -19,7 +22,7 @@ define("IndexView", ["backbone", "underscore"], function (Backbone, _) {
             this.cooldownTextUpdateInterval = setInterval(function () {
                 var width = parseInt(attack_cooldown_node.offsetWidth, 10);
                 attack_cooldown_text_node.textContent = (width / 400 * 4).toFixed(1) + " s";
-            }, 50);
+            }, 100);
         },
         onAutoAttackEnd: function () {
             var attack_cooldown_node = this.el.querySelector(".attack_cooldown");
@@ -31,12 +34,12 @@ define("IndexView", ["backbone", "underscore"], function (Backbone, _) {
             clearInterval(this.cooldownTextUpdateInterval);
         },
         startAutoAttack: function () {
-            this.el.querySelector(".auto-attack-toggle").innerHTML = "Stop Auto Attack";
+            this.el.querySelector(".auto_attack_toggle").innerHTML = "Stop Auto Attack";
             this.model.startAutoAttack();
         },
         stopAutoAttack: function () {
             window.clearInterval(this.cooldownTextUpdateInterval);
-            this.el.querySelector(".auto-attack-toggle").innerHTML = "Start Auto Attack";
+            this.el.querySelector(".auto_attack_toggle").innerHTML = "Start Auto Attack";
             this.model.stopAutoAttack();
         },
         toggleAutoAttack: function () {
