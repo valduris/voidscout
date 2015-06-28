@@ -9,7 +9,7 @@ module.exports = function (app, wss, store) {
         });
     };
 
-    wss.on("connection", function(clientSocket) {
+    wss.on("connection", function (clientSocket) {
         // TODO upgrade to a better cookie store
         var cookies = cookie.parse(clientSocket.upgradeReq.headers.cookie);
         store.get(cookies["connect.sid"].substr(2).split(".")[0], function (err, session) {

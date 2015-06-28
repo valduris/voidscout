@@ -9,7 +9,6 @@ define(function (require) {
             _.bindAll(this, "toggleAutoAttack", "onAutoAttackStart", "onAutoAttackEnd");
             this.model.on("autoAttack:start", this.onAutoAttackStart);
             this.model.on("autoAttack:end", this.onAutoAttackEnd); // current auto attack cooled down
-            this.model.on("autoAttack:stop", this.onAutoAttackStop); // no pending auto attack
         },
         events: {
             "click .auto_attack_toggle": "toggleAutoAttack"
@@ -30,15 +29,14 @@ define(function (require) {
             attack_cooldown_node.style.width = "400px";
             (function () { return attack_cooldown_node.offsetHeight; }()); // trigger a reflow to reset CSS animation
         },
-        onAutoAttackStop: function () {
-            clearInterval(this.cooldownTextUpdateInterval);
-        },
         startAutoAttack: function () {
             this.el.querySelector(".auto_attack_toggle").innerHTML = "Stop Auto Attack";
             this.model.startAutoAttack();
         },
         stopAutoAttack: function () {
-            window.clearInterval(this.cooldownTextUpdateInterval);
+            window.setTimeout(function () {
+                window.clearInterval(this.cooldownTextUpdateInterval);
+            }, this.model.get("autoAttackCooldown"));
             this.el.querySelector(".auto_attack_toggle").innerHTML = "Start Auto Attack";
             this.model.stopAutoAttack();
         },
