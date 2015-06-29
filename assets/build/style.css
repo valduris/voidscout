@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'Kreon-Regular';
+  src: local('Kreon-Regular'), url("../fonts/Kreon-Regular.ttf") format('truetype');
+}
+html {
+  background: #dadada;
+  overflow-y: scroll;
+  font-family: 'Kreon-Regular', serif;
+  font-size: 16px;
+}
+html body {
+  background: #dadada;
+}
+
+.attack_cooldown_wrapper {
+  background: #888;
+  border: 1px solid #000;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #333 inset;
+  position: relative;
+  width: 400px;
+}
+.attack_cooldown_text {
+  color: #eee;
+  font-weight: bold;
+  font-family: Arial;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+  width: 400px;
+}
+.attack_cooldown {
+  background: #444;
+  border-right: 1px solid #000;
+  box-shadow: 0 0 4px #237;
+  height: 20px;
+  width: 100%;
+}
+.attack_cooldown.animate {
+  transition-duration: 4000ms;
+  transition-property: all;
+  transition-timing-function: linear;
+}
+.player_experience_bar_wrapper {
+  background: #888;
+  border: 1px solid #000;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #333 inset;
+  position: relative;
+  width: 400px;
+}
+.player_experience_bar_text {
+  color: #eee;
+  font-weight: bold;
+  font-family: Arial;
+  line-height: 20px;
+  position: absolute;
+  text-align: center;
+  width: 400px;
+}
+.player_experience_bar {
+  background: #444;
+  border-right: 1px solid #000;
+  box-shadow: 0 0 4px #237;
+  height: 20px;
+  width: 0%;
+}
+.player_experience_bar.animate {
+  transition-duration: 400ms;
+  transition-property: all;
+  transition-timing-function: linear;
+}
+.log {
+  background: #888;
+  border: 1px solid #000;
+  border-radius: 3px;
+  box-shadow: 0 0 3px #333 inset;
+  box-sizing: border-box;
+  font-size: 16px;
+  padding: 5px;
+  position: relative;
+  width: 400px;
+}
+.log .entry {
+  color: #fff;
+  font-size: 0.8em;
+  list-style: none;
+  text-shadow: 0 0 3px #000;
+}
+.log .entry.entry_lightblue {
+  color: #dff2ff;
+}
+.log .entry.entry_red {
+  color: #f44;
+}
+.log .entry.entry_yellow {
+  color: #ff0;
+}

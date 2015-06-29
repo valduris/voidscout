@@ -1,7 +1,8 @@
-var gulp = require("gulp");
-var concat = require("gulp-concat");
-var uglify = require("gulp-uglify");
-var sourcemaps = require("gulp-sourcemaps");
+var gulp = require("gulp"),
+    concat = require("gulp-concat"),
+    uglify = require("gulp-uglify"),
+    sourcemaps = require("gulp-sourcemaps"),
+    stylus = require("gulp-stylus");
 
 gulp.task("js", function () {
     gulp.src([  "./assets/js/lib/underscore-1.8.3.min.js",
@@ -19,8 +20,17 @@ gulp.task("js", function () {
         .pipe(gulp.dest("./assets/build/"));
 });
 
-gulp.task("watch", function () {
-    gulp.watch(["./assets/js/**/*.js", "!./assets/build.js"], ["js"]);
+gulp.task("css", function () {
+    gulp.src([  "./assets/css/style.styl",
+                "./assets/css/ctrl/*.styl"])
+        .pipe(stylus())
+        .pipe(concat("style.css"))
+        .pipe(gulp.dest("./assets/build"));
 });
 
-gulp.task("default", ["js", "watch"]);
+gulp.task("watch", function () {
+    gulp.watch(["./assets/js/**/*.js", "!./assets/build.js"], ["js"]);
+    gulp.watch(["./assets/css/**/*.styl"], ["css"]);
+});
+
+gulp.task("default", ["js", "css", "watch"]);
