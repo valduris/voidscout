@@ -1,5 +1,6 @@
 var EntityModel = require("./EntityModel");
 
+// TODO make real database
 module.exports = (function () {
     "use strict";
 

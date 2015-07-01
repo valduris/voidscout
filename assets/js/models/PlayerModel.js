@@ -10,7 +10,7 @@ define(function (require) {
             autoAttack: false,
             autoAttackTimeout: null,
             autoAttackCooldown: 4000,
-            autoAttackTarget: null,
+            autoAttackTarget: 1,
             connection: null,
             name: null,
             email: null,
@@ -30,10 +30,13 @@ define(function (require) {
             EntityModel.prototype.initialize.apply(self, arguments);
             self.connection = new Connection();
             self.connection.on("auto_attack", function (payload) {
+                //console.log(payload);
                 if (payload.won === true) {
                     self.set("killed", self.get("killed") + 1);
-                    self.set("experience", self.get("experience") + 120);
+                    self.set("experience", self.get("experience") + payload.xp);
+                    self.set("items", self.get("items").concat(payload.items));
                 }
+                console.log("self.items", self.get("items"));
             });
             self.connection.on("broadcast", function (data) {
                 console.log("broadcast ->", data);
@@ -47,7 +50,7 @@ define(function (require) {
         triggerAutoAttack: function () {
             var self = this;
             if (this.get("autoAttack")) {
-                self.connection.emit("auto_attack", "auto attack data here =)");
+                self.connection.emit("auto_attack", {target: self.get("autoAttackTarget")});
                 self.trigger("autoAttack:start");
             }
             self.autoAttackTimeout = setTimeout(function () {
@@ -62,8 +65,8 @@ define(function (require) {
         stopAutoAttack: function () {
             this.set("autoAttack", false);
         },
-        setAutoAttackTarget: function (npcName) {
-            this.set("autoAttackTarget", npcName);
+        setAutoAttackTarget: function (monsterId) {
+            this.set("autoAttackTarget", monsterId);
         },
         updateLevel: function () {
             if (this.get("experience") >= this.getExperienceForLevel(this.get("level"))) {
@@ -72,6 +75,20 @@ define(function (require) {
         },
         getExperienceForLevel: function (level) {
             return level === 1 ? 0 : (Math.floor(level / 2 * 100) + level * 100);
+        },
+        applyItem: function (item) {
+            for (var key in item.bonus) {
+                if (item.bonus.hasOwnProperty(key)) {
+                    this.set(key, this.get(key) + item.bonus[key]);
+                }
+            }
+        },
+        removeItem: function (item) {
+            for (var key in item.bonus) {
+                if (item.bonus.hasOwnProperty(key)) {
+                    this.set(key, this.get(key) - item.bonus[key]);
+                }
+            }
         }
     });
 });
