@@ -8,9 +8,9 @@ module.exports = (function () {
         return this;
     };
 
-    EntityModel.find = function (char_name) {
+    EntityModel.find = function (id) {
         for (var i = 0; i < this.store.length; i++) {
-            if (this.store[i].char_name === char_name) {
+            if (this.store[i].id === id) {
                 return this.store[i];
             }
         }
@@ -24,8 +24,8 @@ module.exports = (function () {
         }
     };
 
-    EntityModel.set = function (char_name, key, value) {
-        EntityModel.find(char_name)[key] = value;
+    EntityModel.set = function (id, key, value) {
+        EntityModel.find(id)[key] = value;
     };
 
     return EntityModel;

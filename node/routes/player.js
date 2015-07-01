@@ -1,6 +1,7 @@
 var PlayerModel = require("../models/PlayerModel");
 
 module.exports = function (app) {
+    "use strict";
 
     // TODO make real REST API for backbone models
     app.get("/players/:id", function (req, res) {

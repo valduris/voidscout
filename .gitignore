@@ -1,3 +1,4 @@
 node_modules/**
 .idea/**
 assets/js/build/**
+assets/build/**

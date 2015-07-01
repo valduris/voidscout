@@ -1,6 +1,7 @@
 var PlayerModel = require("../models/PlayerModel");
 
 module.exports = function (app, store) {
+    "use strict";
 
     app.get("/", function (req, res) {
         res.render("index");
