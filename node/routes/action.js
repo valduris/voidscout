@@ -1,5 +1,5 @@
-var MonsterModel = require("../models/MonsterModel"),
-    ItemModel = require("../models/ItemModel");
+var MonstersItems = require("../models/MonstersItems"),
+    Monster = require("../models/Monster");
 
 module.exports = function (app, wss, store) {
     "use strict";
@@ -28,17 +28,23 @@ module.exports = function (app, wss, store) {
 
                 switch (data.event) {
                 case "auto_attack":
-                    var monster = MonsterModel.find(data.payload.target),
-                        items = [],
-                        i;
+                    Monster.where({monster_id: "1"}).fetch({withRelated: ["items", "monsters_items"]}).then(function (monster) {
+                        console.log(monster.toJSON());
+                        var items = [], i;
 
-                    for (i = monster.drops.length - 1; i >= 0; i--) {
-                        if (monster.drops[i].chance > Math.random()) {
-                            items.push(ItemModel.find(monster.drops[i].id));
+                        monster = monster.toJSON();
+
+                        for (i = monster.items.length - 1; i >= 0; i--) {
+                            if (monster.monsters_items[i].chance > Math.random()) {
+                                items.push(monster.items[i]);
+                            }
                         }
-                    }
 
-                    clientSocket.send(JSON.stringify({ event: "auto_attack", payload: {won: true, xp: 10, items: items} }));
+                        clientSocket.send(JSON.stringify({
+                            event: "auto_attack",
+                            payload: {won: true, xp: monster.xp, items: items}
+                        }));
+                    });
                     break;
                 default:
                     break;

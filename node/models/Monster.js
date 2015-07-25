@@ -1,12 +1,24 @@
-var EntityModel = require("./EntityModel");
+var Bookshelf = require("./Bookshelf");
+
+require("./MonstersItems");
+require("./Item");
 
 module.exports = (function () {
     "use strict";
 
-    var MonsterModel = Object.create(EntityModel);
+    var Monster = Bookshelf.Model.extend({
+        tableName: "monsters",
+        idAttribute: ["monster_id"],
+        items: function () {
+            return this.belongsToMany("Item", "monsters_items", "monster_id", "item_id");
+        },
+        monsters_items: function () {
+            return this.hasMany("MonstersItems", "monster_id");
+        }
+    });
 
     // TODO make MonsterItemModel; ORM?
-    MonsterModel.initialize([
+    Monster.data = [
         { id:  1, level:  1, xp:  3, "name": "NPC_PLAGUED_RAT",    drops: [{id: 1, chance: 0.2}] },
         { id:  2, level:  2, xp:  5, "name": "NPC_RAT",            drops: [{id: 1, chance: 0.21}, {id: 2, chance: 0.45}] },
         { id:  3, level:  3, xp:  9, "name": "NPC_OVERSIZED_RAT",  drops: [{id: 2, chance: 0.55}] },
@@ -18,9 +30,8 @@ module.exports = (function () {
         { id:  9, level:  9, xp: 41, "name": "NPC_WOLF",           drops: [{id: 999, chance: 0.00001}] },
         { id: 10, level: 10, xp: 53, "name": "NPC_DIRE_WOLF",      drops: [{id: 999, chance: 0.00001}] },
         { id: 11, level: 11, xp: 67, "name": "NPC_MINE_SKELETON",  drops: [{id: 999, chance: 0.00001}] }
+    ];
 
-    ]);
-
-    return MonsterModel;
+    return Bookshelf.model("Monster", Monster);
 
 }());

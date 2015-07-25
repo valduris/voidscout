@@ -1,4 +1,4 @@
-var PlayerModel = require("../models/PlayerModel");
+var Player = require("../models/Player");
 
 module.exports = function (app, store) {
     "use strict";
@@ -12,7 +12,7 @@ module.exports = function (app, store) {
     });
 
     app.post("/login", function (req, res) {
-        var player = PlayerModel.findBy("email", req.body.email);
+        var player = Player.findBy("email", req.body.email);
 
         if (req.body.password === player.password) {
             res.redirect("/");
