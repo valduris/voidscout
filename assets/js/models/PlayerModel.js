@@ -3,7 +3,9 @@ define(function (require) {
     "use strict";
     var _ = require("underscore"),
         EntityModel = require("models/EntityModel"),
-        Connection = require("models/ConnectionModel");
+        Connection = require("models/ConnectionModel"),
+        ItemModel = require("models/ItemModel"),
+        ItemsCollection = require("collections/ItemsCollection");
 
     return EntityModel.extend({
         defaults: _.extend({}, EntityModel.prototype.defaults, {
@@ -26,15 +28,20 @@ define(function (require) {
         }),
         urlRoot: "/player",
         initialize: function () {
-            var self = this;
+            var self = this, i;
             EntityModel.prototype.initialize.apply(self, arguments);
+            self.itemsCollection = new ItemsCollection();
             self.connection = new Connection();
             self.connection.on("auto_attack", function (payload) {
                 //console.log(payload);
+                // TODO add health bar logic
                 if (payload.won === true) {
                     self.set("killed", self.get("killed") + 1);
                     self.set("experience", self.get("experience") + payload.xp);
                     self.set("items", self.get("items").concat(payload.items));
+                    for (i = 0; i < payload.items.length; i++) {
+                        self.itemsCollection.add(payload.items[i]);
+                    }
                 }
                 console.log("self.items", self.get("items"));
             });
@@ -74,7 +81,7 @@ define(function (require) {
             }
         },
         getExperienceForLevel: function (level) {
-            return level === 1 ? 0 : (Math.floor(level / 2 * 100) + level * 100);
+            return level === 1 ? 100 : (Math.floor(level / 2 * 100) + level * 100);
         },
         applyItem: function (item) {
             for (var key in item.bonus) {

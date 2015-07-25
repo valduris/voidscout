@@ -17,6 +17,8 @@ img.voidscout_logo(src="/img/logo_voidscout.png", alt="")
     .player_name
     .player_kills
 
+ul.items_view.log
+
 //TOOD Make auto attack target selection
 
 p
@@ -27,5 +29,10 @@ ul.log
     li.entry Unknown has joined the game.
     li.entry.entry_lightblue Current mission - Defeat 20 plagued rats.
     li.entry.entry_red Failed to initiate connection.
+
+script#item_view_template(type="text/template")
+    <td><%= name %></td>
+    <td><%= min_equip_level %></td>
+    <td><%= bonus %></td>
 
 script(data-main="js/voidscout.js" src="js/lib/require-2.1.17.min.js")

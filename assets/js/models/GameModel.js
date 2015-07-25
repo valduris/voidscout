@@ -4,6 +4,7 @@ define(function (require) {
     var IndexView = require("views/IndexView"),
         PlayerModel = require("models/PlayerModel"),
         PlayerView = require("views/PlayerView"),
+        ItemsView = require("views/ItemsView"),
         Backbone = require("backbone"),
         $ = require("jquery");
 
@@ -16,8 +17,11 @@ define(function (require) {
                     }),
                     playerView = new PlayerView({
                         model: player
+                    }),
+                    itemsView = new ItemsView({
+                        model: player
                     });
             });
         }
-    })
+    });
 });

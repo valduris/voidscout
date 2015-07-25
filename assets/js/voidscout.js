@@ -5,17 +5,13 @@ requirejs.config({
         jquery: "./lib/jquery-ajax-2.1.1.min",
         backbone: "./lib/backbone-1.1.2.min",
         underscore: "./lib/underscore-1.8.3.min"
-    },
-    shim: {
-        "voidscout": {
-            deps: ["jquery"]
-        }
     }
 });
 
 define(function (require) {
     "use strict";
-    var GameModel = require("models/GameModel");
+    var $ = require("jquery"),
+        GameModel = require("models/GameModel");
     $(function () {
         window.game = new GameModel();
     });
