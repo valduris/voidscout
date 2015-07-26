@@ -2,33 +2,53 @@ doctype html
 
 link(rel='stylesheet', href='/build/style.css')
 
-img.voidscout_logo(src="/img/logo_voidscout.png", alt="")
+.wrapper
+    ul.header
+        li.logo
+            img.voidscout_logo(src="/img/logo_voidscout.png", alt="")
+        li.combat.active combat
+        li.trade trade
+        li.guild guild
+        li.some other?
+    .experience_bar_view
+        .player_experience_bar_wrapper
+            .player_experience_bar_text
+            .player_experience_bar.animate
+        .player_name
+        .player_kills
+    .container.container_left
+        ul.player_items_view
+            li.item_slot.cape cape
+            li.item_slot.helmet helmet
+            li.item_slot.amulet amulet
+            li.item_slot.wrists wrists
+            li.item_slot.chest chest
+            li.item_slot.gloves gloves
+            li.item_slot.ring_1 ring
+            li.item_slot.legs legs
+            li.item_slot.ring_2 ring
+            li.item_slot.sword sword
+            li.item_slot.boots boots
+            li.item_slot.shield shield
+    .container.container_right
+        .index_view
+            .attack_cooldown_wrapper
+                .attack_cooldown_text
+                .attack_cooldown
+            button.auto_attack_toggle Start auto attack
 
-.index_view
-    .attack_cooldown_wrapper
-        .attack_cooldown_text
-        .attack_cooldown
-    button.auto_attack_toggle Start auto attack
+        ul.items_view.log
 
-.player_view
-    .player_experience_bar_wrapper
-        .player_experience_bar_text
-        .player_experience_bar.animate
-    .player_name
-    .player_kills
+        //TOOD Make auto attack target selection
 
-ul.items_view.log
+        p
+            | Grumpy wizards make toxic brew for the evil Queen and Jack.
 
-//TOOD Make auto attack target selection
-
-p
-    | Grumpy wizards make toxic brew for the evil Queen and Jack.
-
-ul.log
-    li.entry welcome!
-    li.entry Unknown has joined the game.
-    li.entry.entry_lightblue Current mission - Defeat 20 plagued rats.
-    li.entry.entry_red Failed to initiate connection.
+        ul.log
+            li.entry welcome!
+            li.entry Unknown has joined the game.
+            li.entry.entry_lightblue Current mission - Defeat 20 plagued rats.
+            li.entry.entry_red Failed to initiate connection.
 
 script#item_view_template(type="text/template")
     <td><%= name %></td>

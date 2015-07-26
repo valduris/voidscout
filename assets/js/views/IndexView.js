@@ -20,13 +20,13 @@ define(function (require) {
             attack_cooldown_node.style.width = "0px";
             this.cooldownTextUpdateInterval = setInterval(function () {
                 var width = parseInt(attack_cooldown_node.offsetWidth, 10);
-                attack_cooldown_text_node.textContent = (width / 400 * 4).toFixed(1) + " s";
+                attack_cooldown_text_node.textContent = (width / 515 * 4).toFixed(1) + " s";
             }, 100);
         },
         onAutoAttackEnd: function () {
             var attack_cooldown_node = this.el.querySelector(".attack_cooldown");
             attack_cooldown_node.classList.remove("animate");
-            attack_cooldown_node.style.width = "400px";
+            attack_cooldown_node.style.width = "515px";
             (function () { return attack_cooldown_node.offsetHeight; }()); // trigger a reflow to reset CSS animation
         },
         startAutoAttack: function () {

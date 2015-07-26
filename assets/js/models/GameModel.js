@@ -3,7 +3,7 @@ define(function (require) {
     "use strict";
     var IndexView = require("views/IndexView"),
         PlayerModel = require("models/PlayerModel"),
-        PlayerView = require("views/PlayerView"),
+        ExperienceBarView = require("views/ExperienceBarView"),
         ItemsView = require("views/ItemsView"),
         Backbone = require("backbone"),
         $ = require("jquery");
@@ -15,7 +15,7 @@ define(function (require) {
                     indexView = new IndexView({
                         model: player
                     }),
-                    playerView = new PlayerView({
+                    experienceBarView = new ExperienceBarView({
                         model: player
                     }),
                     itemsView = new ItemsView({

@@ -4,7 +4,6 @@ define(function (require) {
     var _ = require("underscore"),
         EntityModel = require("models/EntityModel"),
         Connection = require("models/ConnectionModel"),
-        ItemModel = require("models/ItemModel"),
         ItemsCollection = require("collections/ItemsCollection");
 
     return EntityModel.extend({
@@ -43,7 +42,7 @@ define(function (require) {
                         self.itemsCollection.add(payload.items[i]);
                     }
                 }
-                console.log("self.items", self.get("items"));
+                //console.log("self.items", self.get("items"));
             });
             self.connection.on("broadcast", function (data) {
                 console.log("broadcast ->", data);

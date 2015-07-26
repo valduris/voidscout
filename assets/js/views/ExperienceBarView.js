@@ -3,12 +3,12 @@ define(function (require) {
     "use strict";
     var Backbone = require("backbone");
     return Backbone.View.extend({
-        el: ".player_view",
+        el: ".experience_bar_view",
         initialize: function () {
             this.updateExperienceBar();
             this.listenTo(this.model, "change:experience", this.updateExperienceBar);
-            this.el.querySelector(".player_name").innerText = this.model.get("name");
-            this.el.querySelector(".player_kills").innerText = this.model.get("killed");
+            //this.el.querySelector(".player_name").innerText = this.model.get("name");
+            //this.el.querySelector(".player_kills").innerText = this.model.get("killed");
         },
         updateExperienceBar: function () {
             var experienceBar = this.el.querySelector(".player_experience_bar"),

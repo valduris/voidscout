@@ -8,8 +8,75 @@ html {
   font-size 16px
   body {
     background #dadada
+    padding 0
+    margin 0
     .voidscout_logo {
       width 400px
     }
   }
+}
+
+.header {
+  border-color #777
+  border-style solid
+  border-width 0 1px 1px 1px
+  border-radius 0 0 2px 2px
+  height 80px
+  padding-left 0
+  margin 0
+  width 800px;
+  li {
+    background #aeaeae
+    border-left 1px solid #777
+    box-shadow 0 0 15px #ccc inset
+    box-sizing border-box
+    cursor pointer
+    display inline-block
+    font-size 1.4em
+    height 100%
+    line-height 80px
+    list-style none
+    text-align center
+    text-transform capitalize
+    width 100px
+    &:first-child {
+      background #eaeaea
+      border-left none
+      vertical-align top
+      width 400px
+      &:hover {
+        background #eee
+        box-shadow 0 0 15px #ccc inset
+      }
+    }
+    &.active {
+      background #d2d2d2
+      box-shadow 0 0 15px #eee inset
+    }
+    &:hover {
+      box-shadow 0 0 15px #777 inset
+      background #dedede
+    }
+  }
+}
+
+.wrapper {
+  width 802px
+  margin 0 auto
+  .container {
+    box-sizing border-box
+  }
+  .container_left {
+    float left
+    width 250px
+  }
+  .container_right {
+    float right
+    padding 10px
+    width 540px
+  }
+}
+
+.experience_bar_view {
+  margin 8px 0 12px 0
 }
