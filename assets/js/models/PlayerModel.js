@@ -2,9 +2,11 @@
 define(function (require) {
     "use strict";
     var _ = require("underscore"),
+        consts = require("consts"),
+        ItemModel = require("models/ItemModel"),
         EntityModel = require("models/EntityModel"),
         Connection = require("models/ConnectionModel"),
-        ItemsCollection = require("collections/ItemsCollection");
+        ItemsCollection = Backbone.Collection.extend({ model: ItemModel });
 
     return EntityModel.extend({
         defaults: _.extend({}, EntityModel.prototype.defaults, {
@@ -27,27 +29,38 @@ define(function (require) {
         }),
         urlRoot: "/player",
         initialize: function () {
-            var self = this, i;
+            var i;
+
             EntityModel.prototype.initialize.apply(self, arguments);
-            self.itemsCollection = new ItemsCollection();
-            self.connection = new Connection();
-            self.connection.on("auto_attack", function (payload) {
-                //console.log(payload);
+            this.inventoryItemsCollection = new ItemsCollection();
+            this.wornItemsCollection = new ItemsCollection();
+            this.inventoryItemsCollection.add(this.get("wornItems"));
+
+            for (var itemType in consts.itemTypes) {
+                this.wornItemsCollection.add( new ItemModel({
+                    name: itemType,
+                    min_equip_level: 1,
+                    type: itemType,
+                    bonus: null
+                }));
+            }
+
+            this.connection = new Connection();
+            this.listenTo(this.connection, "auto_attack", function (payload) {
                 // TODO add health bar logic
                 if (payload.won === true) {
-                    self.set("killed", self.get("killed") + 1);
-                    self.set("experience", self.get("experience") + payload.xp);
-                    self.set("items", self.get("items").concat(payload.items));
+                    this.set("killed", this.get("killed") + 1);
+                    this.set("experience", this.get("experience") + payload.xp);
+                    this.set("items", this.get("items").concat(payload.items));
                     for (i = 0; i < payload.items.length; i++) {
-                        self.itemsCollection.add(payload.items[i]);
+                        this.inventoryItemsCollection.add(payload.items[i]);
                     }
                 }
-                //console.log("self.items", self.get("items"));
             });
-            self.connection.on("broadcast", function (data) {
+            this.connection.on("broadcast", function (data) {
                 console.log("broadcast ->", data);
             });
-            self.on("change:experience", this.updateLevel);
+            this.on("change:experience", this.updateLevel);
         },
         startAutoAttack: function () {
             this.set("autoAttack", true);

@@ -4,7 +4,8 @@ define(function (require) {
     var IndexView = require("views/IndexView"),
         PlayerModel = require("models/PlayerModel"),
         ExperienceBarView = require("views/ExperienceBarView"),
-        ItemsView = require("views/ItemsView"),
+        InventoryItemsView = require("views/InventoryItemsView"),
+        WornItemsView = require("views/WornItemsView"),
         Backbone = require("backbone"),
         $ = require("jquery");
 
@@ -18,7 +19,10 @@ define(function (require) {
                     experienceBarView = new ExperienceBarView({
                         model: player
                     }),
-                    itemsView = new ItemsView({
+                    inventoryItemsView = new InventoryItemsView({
+                        model: player
+                    }),
+                    wornItemsView = new WornItemsView({
                         model: player
                     });
             });

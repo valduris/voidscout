@@ -17,19 +17,23 @@ link(rel='stylesheet', href='/build/style.css')
         .player_name
         .player_kills
     .container.container_left
-        ul.player_items_view
-            li.item_slot.cape cape
-            li.item_slot.helmet helmet
-            li.item_slot.amulet amulet
-            li.item_slot.wrists wrists
-            li.item_slot.chest chest
-            li.item_slot.gloves gloves
-            li.item_slot.ring_1 ring
-            li.item_slot.legs legs
-            li.item_slot.ring_2 ring
-            li.item_slot.sword sword
-            li.item_slot.boots boots
-            li.item_slot.shield shield
+        .items_view.worn_items_view
+            .item_slot.cape cape
+            .item_slot.helmet
+                div.slot_name helmet
+                div.item_name Iron Sword 5
+                div.bonus +5 Attack
+                div.bonus +1 Armor
+            .item_slot.amulet amulet
+            .item_slot.wrists wrists
+            .item_slot.chest chest
+            .item_slot.gloves gloves
+            .item_slot.ring ring
+            .item_slot.legs legs
+            .item_slot.bracelet bracelet
+            .item_slot.sword sword
+            .item_slot.boots boots
+            .item_slot.shield shield
     .container.container_right
         .index_view
             .attack_cooldown_wrapper
@@ -37,9 +41,9 @@ link(rel='stylesheet', href='/build/style.css')
                 .attack_cooldown
             button.auto_attack_toggle Start auto attack
 
-        ul.items_view.log
+        .items_view.inventory_items_view
 
-        //TOOD Make auto attack target selection
+        //TODO Make auto attack target selection
 
         p
             | Grumpy wizards make toxic brew for the evil Queen and Jack.
@@ -51,8 +55,8 @@ link(rel='stylesheet', href='/build/style.css')
             li.entry.entry_red Failed to initiate connection.
 
 script#item_view_template(type="text/template")
-    <td><%= name %></td>
-    <td><%= min_equip_level %></td>
-    <td><%= bonus %></td>
+    <div><%= name %></div>
+    <div><%= min_equip_level %></div>
+    <div><%= bonus %></div>
 
 script(data-main="js/voidscout.js" src="js/lib/require-2.1.17.min.js")

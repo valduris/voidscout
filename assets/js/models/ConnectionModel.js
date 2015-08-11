@@ -19,10 +19,13 @@ define(function (require) {
                     self.trigger(data.event, data.payload);
                 }
             };
-            this.on("auto_attack", function(payload) {
+            this.on("auto_attack", function (payload) {
                //console.log("payload", payload);
             });
         },
+        /*
+         * emit event to ws server
+         */
         emit: function (event, payload) {
             var self = this;
             if (this.socket.readyState !== 1) {
@@ -33,18 +36,6 @@ define(function (require) {
                 this.socket.send(JSON.stringify({event: event, payload: payload}));
             }
 
-        },
-        on: function (event, callback) {
-            if (!(event in this.events)) {
-                this.events[event] = [];
-            }
-            this.events[event].push(callback);
-        },
-        trigger: function (event, payload) {
-            var self = this;
-            this.events[event].forEach( function (callback) {
-                callback.call(self, payload);
-            });
         }
     });
 
