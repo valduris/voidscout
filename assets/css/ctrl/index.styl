@@ -27,16 +27,27 @@
   transition-property all
   transition-timing-function linear
 }
-.player_experience_bar_wrapper {
+
+.experience_bar_view,
+.health_bar_view {
   background #888
   border 1px solid #000
-  border-radius 3px
-  box-shadow 0 0 3px #333 inset
+  box-shadow 0 0 3px #aaa inset
   box-sizing border-box
   position relative
   width 100%
 }
-.player_experience_bar_text {
+.experience_bar_view {
+  border-radius 2px 2px 0 0
+  margin-top 8px
+}
+.health_bar_view {
+  border-top-width 0
+  border-radius 0 0 2px 2px
+  margin-bottom 12px
+}
+.player_experience_bar_text,
+.player_health_bar_text {
   color #222
   font-size 9px
   font-weight bold
@@ -47,14 +58,16 @@
   text-shadow 0 0 5px #fff
   width 800px
 }
-.player_experience_bar {
+.player_experience_bar,
+.player_health_bar {
   background #444
   border-right 1px solid #000
   box-shadow 0 0 4px #237
-  height 10px
+  height 9px
   width 0
 }
-.player_experience_bar.animate {
+.player_experience_bar.animate,
+.player_health_bar.animate {
   transition-duration 400ms
   transition-property all
   transition-timing-function linear

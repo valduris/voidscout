@@ -2,6 +2,7 @@
 define(function (require) {
     "use strict";
     var _ = require("underscore"),
+        utils = require("utils"),
         consts = require("consts"),
         ItemModel = require("models/ItemModel"),
         EntityModel = require("models/EntityModel"),
@@ -17,8 +18,8 @@ define(function (require) {
             connection: null,
             name: null,
             email: null,
-            hitPoints: 10,
-            hitPointsMax: 10,
+            health: 99,
+            maxHealth: 100,
             armor: 1,
             damage: 1,
             level: 1,
@@ -56,6 +57,7 @@ define(function (require) {
                         this.inventoryItemsCollection.add(payload.items[i]);
                     }
                 }
+                this.set("health", this.get("health") - utils.randomFromRange(2, 10));
             });
             this.connection.on("broadcast", function (data) {
                 console.log("broadcast ->", data);
