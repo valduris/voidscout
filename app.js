@@ -7,7 +7,7 @@ var express = require("express"),
     bodyParser = require("body-parser"),
     wss = new WebSocketServer({ port: 8080 });
 
-app.set("views", __dirname + "/node/views");
+app.set("views", __dirname + "/server/views");
 app.set("view engine", "jade");
 app.use(session({ store: store, resave: false, secret: "secret", saveUninitialized: true }));
 app.use(express.static("assets"));
@@ -21,7 +21,7 @@ var port = Number(process.env.PORT || 5000);
 app.listen(port, function () {
     console.log("Listening on " + port);
     [ "index", "player" ].forEach(function (file) {
-        require("./node/routes/" + file)(app);
+        require("./server/routes/" + file)(app);
     });
 
     // handle websocket requests
