@@ -25,5 +25,5 @@ app.listen(port, function () {
     });
 
     // handle websocket requests
-    require("./node/routes/action")(app, wss, store);
+    require("./server/routes/action")(app, wss, store);
 });
