@@ -12,18 +12,18 @@ define(function (require) {
     };
 
     constants.itemTypes = {
-        CAPE: 0x1,
-        HELME: 0x2,
-        AMULET: 0x3,
-        WRISTS: 0x4,
-        CHEST: 0x5,
-        GLOVES: 0x6,
-        RING: 0x7,
-        LEGS: 0x8,
-        BRACELET: 0x9,
-        SWORD: 0xa,
-        BOOTS: 0xb,
-        SHIELD: 0xc
+        CAPE: "CAPE",
+        HELMET: "HELMET",
+        AMULET: "AMULET",
+        WRISTS: "WRISTS",
+        CHEST: "CHEST",
+        GLOVES: "GLOVES",
+        RING: "RING",
+        LEGS: "LEGS",
+        BRACELET: "BRACELET",
+        SWORD: "SWORD",
+        BOOTS: "BOOTS",
+        SHIELD: "SHIELD"
     };
 
     return utils.deepFreeze(constants);
@@ -38,6 +38,5 @@ define(function (require) {
     // ITEM_COPPER_MACE
     // ITEM_TITANIUM_MACE
     // ITEM_TITANIUM_LONGSWORD
-
 
 });

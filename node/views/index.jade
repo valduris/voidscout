@@ -57,9 +57,25 @@ link(rel='stylesheet', href='/build/style.css')
             li.entry.entry_lightblue Current mission - Defeat 20 plagued rats.
             li.entry.entry_red Failed to initiate connection.
 
+        .chat_view
+            .chat_messages
+            .chat_button
+
 script#item_view_template(type="text/template")
     <div><%= name %></div>
     <div><%= min_equip_level %></div>
     <div><%= bonus %></div>
+
+script#inventory_item_overlay_view_template(type="text/template").
+    <div class=item_overlay>
+        <div class="item_name"><%= name %></div>
+        <span class="item_type"><%= type %></span>
+        <span class="min_equip_level"><%= min_equip_level %></span>
+        <div style="clear: left;"></div>
+        <br>
+        <% _.each(bonus, function(value, key) { %>
+            <div class="item_bonus"><%= "+" + value + " " + key %></div>
+        <% }); %>
+    </div>
 
 script(data-main="js/voidscout.js" src="js/lib/require-2.1.17.min.js")

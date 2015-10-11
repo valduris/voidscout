@@ -103,26 +103,80 @@
   list-style none
   padding 5px
   margin 0
+  &.worn_items_view {
+    .inventory_item_overlay_view {
+      left 33px
+    }
+  }
+  &.inventory_items_view {
+    .inventory_item_overlay_view {
+      right 33px
+    }
+  }
   .item_slot {
+    background #f4f4f4
     border 1px solid #666
     border-radius 4px
-    background #f4f4f4
+    box-shadow 0 0 10px #888 inset, 0 0 2px #dff2ff
     cursor pointer
     display inline-block
     font-size 11px
     height 70px
     margin 5px
-    overflow hidden
+    position relative
     text-align center
     text-transform capitalize
+    vertical-align top
     width 67px
-    box-shadow 0 0 10px #888 inset, 0 0 2px #dff2ff
     &:hover {
       background #fff
       box-shadow 0 0 10px #555 inset, 0 0 2px #dff2ff
     }
     p {
       margin 2px
+    }
+    .inventory_item_overlay_view {
+      background #333
+      border 1px solid #000
+      border-radius 3px
+      font-size 12px
+      opacity 0.9
+      padding 5px 10px
+      position absolute
+      top 35px
+      width 120px
+      z-index 1000
+
+      .item_overlay {
+        .item_name {
+          color green
+          font-size 1.5em
+          text-align left
+        }
+        .item_type {
+          color #aaa
+          font-size 1.2em
+          float left
+          text-align left
+          width 50%
+        }
+        .min_equip_level {
+          color red
+          float right;
+          text-align right
+          width 50%
+          &.available {
+            color green
+          }
+          &.unavailable {
+              color red
+          }
+        }
+        .item_bonus {
+          text-align left
+          color limegreen
+        }
+      }
     }
   }
 }

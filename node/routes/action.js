@@ -1,5 +1,4 @@
-var MonstersItems = require("../models/MonstersItems"),
-    Monster = require("../models/Monster");
+var Monster = require("../models/Monster");
 
 module.exports = function (app, wss, store) {
     "use strict";

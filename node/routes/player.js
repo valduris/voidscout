@@ -1,4 +1,5 @@
-var Player = require("../models/Player")
+var Player = require("../models/Player"),
+    consts = require("../consts");
 
 module.exports = function (app) {
     "use strict";
@@ -6,7 +7,7 @@ module.exports = function (app) {
     app.get("/players/:id", function (req, res) {
         Player.forge({id: req.params.id}).fetch().then(function (player) {
             player.set("wornItems", [
-                {type: 0x1, min_equip_level: 1, bonus: {armor: 2}, name: "test item", level: 12}
+                {type: consts.itemTypes.SWORD, min_equip_level: 1, bonus: {armor: 2}, name: "test item", level: 12}
             ]);
             res.json(player);
         });

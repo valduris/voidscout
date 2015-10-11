@@ -4,6 +4,7 @@ define(function (require) {
     var _ = require("underscore"),
         utils = require("utils"),
         consts = require("consts"),
+        Backbone = require("backbone"),
         ItemModel = require("models/ItemModel"),
         EntityModel = require("models/EntityModel"),
         Connection = require("models/ConnectionModel"),
@@ -32,7 +33,7 @@ define(function (require) {
         initialize: function () {
             var i;
 
-            EntityModel.prototype.initialize.apply(self, arguments);
+            EntityModel.prototype.initialize.apply(this, arguments);
             this.inventoryItemsCollection = new ItemsCollection();
             this.wornItemsCollection = new ItemsCollection();
             this.inventoryItemsCollection.add(this.get("wornItems"));
